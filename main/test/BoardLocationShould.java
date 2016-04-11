@@ -52,7 +52,7 @@ public class BoardLocationShould {
     }
 
     @Test
-    public void DetermineIfItIsOnABoundry(){
+    public void DetermineIfItIsOnABoundary(){
 
         assertTrue(new BoardLocation('A', 5).IsOnBoundary(BoardLocation.Boundary.Left));
         assertTrue(new BoardLocation('d', 8).IsOnBoundary(BoardLocation.Boundary.Top));

@@ -16,15 +16,22 @@ public class KingShould {
         assertTrue(sut.IsValidMove(new BoardLocation('d', 4)));
         assertTrue(sut.IsValidMove(new BoardLocation('c', 3)));
         assertTrue(sut.IsValidMove(new BoardLocation('e', 3)));
+
+        assertTrue(sut.IsValidMove(new BoardLocation('c', 4)));
+        assertTrue(sut.IsValidMove(new BoardLocation('e', 4)));
+        assertTrue(sut.IsValidMove(new BoardLocation('c', 2)));
+        assertTrue(sut.IsValidMove(new BoardLocation('e', 2)));
     }
 
     @Test
-    public void DetectInvalidMoves(){
+    public void DetectInvalidMoves() {
 
         King kingOnTopOfBoard = new King(ChessPiece.Colors.Black, new BoardLocation('d', 8));
         King kingOnBottomOfBoard = new King(ChessPiece.Colors.Black, new BoardLocation('d', 1));
         King kingOnLeftOfBoard = new King(ChessPiece.Colors.Black, new BoardLocation('a', 5));
         King kingOnRightOfBoard = new King(ChessPiece.Colors.Black, new BoardLocation('h', 5));
+
+        assertFalse(kingOnBottomOfBoard.IsValidMove(new BoardLocation('d', 8)));
 
         assertFalse(kingOnTopOfBoard.IsValidMove(new BoardLocation('e', 6)));
         assertFalse(kingOnBottomOfBoard.IsValidMove(new BoardLocation('f', 8)));
