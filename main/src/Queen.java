@@ -34,65 +34,7 @@ public class Queen extends ChessPiece {
 			validMoves.add(new BoardLocation(boardLocation.GetNumericHorizontalPosition(), verticalPosition));
 		}
 
-		// Diagonal Upper Right
-		for(int horizontalPosition = boardLocation.GetNumericHorizontalPosition() + 1; horizontalPosition <= BoardLocation.MaxHorizontalPosition; horizontalPosition++){
-
-			int diagonalConstant = horizontalPosition - boardLocation.GetNumericHorizontalPosition();
-
-			int validHorizontalPosition = boardLocation.GetNumericHorizontalPosition() + diagonalConstant;
-			int validVerticalPosition = boardLocation.GetVerticalPosition() + diagonalConstant;
-
-			if(validVerticalPosition > BoardLocation.MaxVerticalPosition){
-				break;
-			}
-
-			validMoves.add(new BoardLocation(validHorizontalPosition, validVerticalPosition));
-		}
-
-		// Diagonal Bottom Right
-		for(int horizontalPosition = boardLocation.GetNumericHorizontalPosition() + 1; horizontalPosition <= BoardLocation.MaxHorizontalPosition; horizontalPosition++){
-
-			int diagonalConstant = horizontalPosition - boardLocation.GetNumericHorizontalPosition();
-
-			int validHorizontalPosition = boardLocation.GetNumericHorizontalPosition() + diagonalConstant;
-			int validVerticalPosition = boardLocation.GetVerticalPosition() - diagonalConstant;
-
-			if(validVerticalPosition < BoardLocation.MinVerticalPosition){
-				break;
-			}
-
-			validMoves.add(new BoardLocation(validHorizontalPosition, validVerticalPosition));
-		}
-
-		// Diagonal Bottom Left
-		for(int horizontalPosition = boardLocation.GetNumericHorizontalPosition() - 1; horizontalPosition >= BoardLocation.MinHorizontalPosition; horizontalPosition--){
-
-			int diagonalConstant = horizontalPosition - boardLocation.GetNumericHorizontalPosition();
-
-			int validHorizontalPosition = boardLocation.GetNumericHorizontalPosition() + diagonalConstant;
-			int validVerticalPosition = boardLocation.GetVerticalPosition() + diagonalConstant;
-
-			if(validVerticalPosition < BoardLocation.MinVerticalPosition){
-				break;
-			}
-
-			validMoves.add(new BoardLocation(validHorizontalPosition, validVerticalPosition));
-		}
-
-		// Diagonal Top Left
-		for(int horizontalPosition = boardLocation.GetNumericHorizontalPosition() - 1; horizontalPosition >= BoardLocation.MinHorizontalPosition; horizontalPosition--){
-
-			int diagonalConstant = horizontalPosition - boardLocation.GetNumericHorizontalPosition();
-
-			int validHorizontalPosition = boardLocation.GetNumericHorizontalPosition() + diagonalConstant;
-			int validVerticalPosition = boardLocation.GetVerticalPosition() - diagonalConstant;
-
-			if(validVerticalPosition < BoardLocation.MinVerticalPosition){
-				break;
-			}
-
-			validMoves.add(new BoardLocation(validHorizontalPosition, validVerticalPosition));
-		}
+		validMoves.addAll(SharedValidMoves.GetDiagonalMoves(boardLocation));
 
 		return validMoves;
 	}
