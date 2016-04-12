@@ -8,9 +8,8 @@ public class King extends ChessPiece {
 	}
 
 	@Override
-	public Boolean IsValidMove(BoardLocation proposedBoardLocation) {
-
-		List<BoardLocation> validMoves = new ArrayList<>();
+	public ArrayList<BoardLocation> GetValidMoves() {
+		ArrayList<BoardLocation> validMoves = new ArrayList<>();
 
 		if (!boardLocation.IsOnBoundary(BoardLocation.Boundary.Right)) {
 			validMoves.add(new BoardLocation(boardLocation.GetNumericHorizontalPosition() + 1, boardLocation.GetVerticalPosition()));
@@ -60,6 +59,6 @@ public class King extends ChessPiece {
 			}
 		}
 
-		return validMoves.contains(proposedBoardLocation);
+		return validMoves;
 	}
 }

@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public abstract class ChessPiece {
 	public enum Colors {
@@ -18,5 +19,9 @@ public abstract class ChessPiece {
 		return boardLocation;
 	}
 
-	public abstract Boolean IsValidMove(BoardLocation proposedBoardLocation);
+	public boolean IsValidMove(BoardLocation proposedBoardLocation){
+		return GetValidMoves().contains(proposedBoardLocation);
+	}
+
+	public abstract ArrayList<BoardLocation> GetValidMoves();
 }

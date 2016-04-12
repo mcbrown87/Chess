@@ -62,4 +62,10 @@ public class BoardLocationShould {
         assertFalse(new BoardLocation('b', 2).IsOnBoundary(BoardLocation.Boundary.Bottom));
         assertFalse(new BoardLocation('d', 5).IsOnBoundary(BoardLocation.Boundary.Right));
     }
+
+    @Test
+    public void ImplementToString(){
+
+        assertEquals("a5", new BoardLocation('A', 5).toString());
+    }
 }

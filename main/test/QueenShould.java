@@ -29,4 +29,14 @@ public class QueenShould {
         assertTrue(sut.IsValidMove(new BoardLocation('d', 2)));
     }
 
+    @Test
+    public void NotAllowValidMoves(){
+
+        Queen sut = new Queen(ChessPiece.Colors.Black, new BoardLocation('c', 3));
+
+        assertFalse(sut.IsValidMove(new BoardLocation('c', 3)));
+        assertFalse(sut.IsValidMove(new BoardLocation('b', 5)));
+        assertFalse(sut.IsValidMove(new BoardLocation('d', 5)));
+        assertFalse(sut.IsValidMove(new BoardLocation('a', 8)));
+    }
 }

@@ -15,13 +15,13 @@ public class BoardLocation {
         Right
     }
 
-    public final int MaxVerticalPosition = 8;
+    public static final int MaxVerticalPosition = 8;
 
-    public final int MinVerticalPositon = 1;
+    public static final int MinVerticalPosition = 1;
 
-    public final int MinHorizontalPosition = 1;
+    public static final int MinHorizontalPosition = 1;
 
-    public final int MaxHorizontalPosition = 8;
+    public static final int MaxHorizontalPosition = 8;
 
     private int verticalPosition;
 
@@ -75,7 +75,7 @@ public class BoardLocation {
                 return GetVerticalPosition() == MaxVerticalPosition;
 
             case Bottom:
-                return GetVerticalPosition() == MinVerticalPositon;
+                return GetVerticalPosition() == MinVerticalPosition;
 
             case Right:
                 return GetNumericHorizontalPosition() == MaxHorizontalPosition;
@@ -99,6 +99,11 @@ public class BoardLocation {
         }
 
         return sameSame;
+    }
+
+    @Override
+    public String toString(){
+        return GetHorizontalPosition() + String.valueOf(GetVerticalPosition());
     }
 
     private static char IntegerToChar(int integer){
