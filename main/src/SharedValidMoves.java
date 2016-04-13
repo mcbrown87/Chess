@@ -70,4 +70,33 @@ public class SharedValidMoves {
 
         return validMoves;
     }
+
+    public static ArrayList<BoardLocation> GetLateralMoves(BoardLocation boardLocation) {
+
+        ArrayList<BoardLocation> validMoves = new ArrayList<>();
+
+        // Horizontal
+        for (int horizontalPosition = boardLocation.GetNumericHorizontalPosition() + 1; horizontalPosition <= BoardLocation.MaxHorizontalPosition; horizontalPosition++) {
+
+            validMoves.add(new BoardLocation(horizontalPosition, boardLocation.GetVerticalPosition()));
+        }
+
+        for (int horizontalPosition = boardLocation.GetNumericHorizontalPosition() - 1; horizontalPosition >= BoardLocation.MinHorizontalPosition; horizontalPosition--) {
+
+            validMoves.add(new BoardLocation(horizontalPosition, boardLocation.GetVerticalPosition()));
+        }
+
+        // Vertical
+        for (int verticalPosition = boardLocation.GetVerticalPosition() + 1; verticalPosition <= BoardLocation.MaxVerticalPosition; verticalPosition++) {
+
+            validMoves.add(new BoardLocation(boardLocation.GetNumericHorizontalPosition(), verticalPosition));
+        }
+
+        for (int verticalPosition = boardLocation.GetVerticalPosition() - 1; verticalPosition >= BoardLocation.MinHorizontalPosition; verticalPosition--) {
+
+            validMoves.add(new BoardLocation(boardLocation.GetNumericHorizontalPosition(), verticalPosition));
+        }
+
+        return validMoves;
+    }
 }
