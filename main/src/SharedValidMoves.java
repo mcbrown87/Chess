@@ -3,9 +3,9 @@ import java.util.ArrayList;
 /**
  * Created by mbrown on 4/11/16.
  */
-public class SharedValidMoves {
+class SharedValidMoves {
 
-    public static ArrayList<BoardLocation> GetDiagonalMoves(BoardLocation boardLocation) {
+    static ArrayList<BoardLocation> GetDiagonalMoves(BoardLocation boardLocation) {
         ArrayList<BoardLocation> validMoves = new ArrayList<>();
 
         // Diagonal Upper Right
@@ -71,7 +71,7 @@ public class SharedValidMoves {
         return validMoves;
     }
 
-    public static ArrayList<BoardLocation> GetLateralMoves(BoardLocation boardLocation) {
+    static ArrayList<BoardLocation> GetLateralMoves(BoardLocation boardLocation) {
 
         ArrayList<BoardLocation> validMoves = new ArrayList<>();
 
