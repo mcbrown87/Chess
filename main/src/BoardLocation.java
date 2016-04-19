@@ -94,6 +94,11 @@ public class BoardLocation {
     }
 
     @Override
+    public int hashCode(){
+        return GetVerticalPosition() ^ GetNumericHorizontalPosition();
+    }
+
+    @Override
     public String toString(){
         return GetHorizontalPosition() + String.valueOf(GetVerticalPosition());
     }

@@ -36,14 +36,16 @@ public abstract class ChessPiece {
 
 		Iterator<BoardLocation> iterator = GetValidMoves().iterator();
 
-		while(iterator.hasNext()){
+		while(iterator.hasNext()) {
 			BoardLocation validMove = iterator.next();
 
 			ChessPiece pieceAtProposedMove = board.GetBoardLocations().get(validMove);
 
-			if(pieceAtProposedMove != null && pieceAtProposedMove.color != color){
-				validMoves.add(validMove);
+			if (pieceAtProposedMove != null && pieceAtProposedMove.color == color) {
+				continue;
 			}
+
+			validMoves.add(validMove);
 		}
 
 		return validMoves;
