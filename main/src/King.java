@@ -1,7 +1,10 @@
 import java.util.ArrayList;
-import java.util.List;
 
 public class King extends ChessPiece {
+
+	public King(Colors color){
+		this(color, null);
+	}
 
 	public King(Colors color, BoardLocation boardLocation) {
 		super(color, boardLocation);

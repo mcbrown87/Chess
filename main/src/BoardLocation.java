@@ -15,14 +15,6 @@ public class BoardLocation {
         Right
     }
 
-    public static final int MaxVerticalPosition = 8;
-
-    public static final int MinVerticalPosition = 1;
-
-    public static final int MinHorizontalPosition = 1;
-
-    public static final int MaxHorizontalPosition = 8;
-
     private int verticalPosition;
 
     private char horizontalPosition;
@@ -72,16 +64,16 @@ public class BoardLocation {
 
         switch(boundary) {
             case Top:
-                return GetVerticalPosition() == MaxVerticalPosition;
+                return GetVerticalPosition() == Board.MaxVerticalPosition;
 
             case Bottom:
-                return GetVerticalPosition() == MinVerticalPosition;
+                return GetVerticalPosition() == Board.MinVerticalPosition;
 
             case Right:
-                return GetNumericHorizontalPosition() == MaxHorizontalPosition;
+                return GetNumericHorizontalPosition() == Board.MaxHorizontalPosition;
 
             case Left:
-                return GetNumericHorizontalPosition() == MinHorizontalPosition;
+                return GetNumericHorizontalPosition() == Board.MinHorizontalPosition;
 
             default:
                 throw new InvalidStateException(String.format("No detection logic defined for boundary '%s'", boundary.toString()));

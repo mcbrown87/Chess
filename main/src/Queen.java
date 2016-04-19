@@ -1,7 +1,10 @@
 import java.util.ArrayList;
-import java.util.List;
 
 public class Queen extends ChessPiece {
+
+	public Queen(Colors color){
+		this(color, null);
+	}
 
 	public Queen(Colors color, BoardLocation boardLocation) {
 		super(color, boardLocation);

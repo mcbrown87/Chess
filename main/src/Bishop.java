@@ -2,6 +2,10 @@ import java.util.ArrayList;
 
 public class Bishop extends ChessPiece {
 
+	public Bishop(Colors color){
+		this(color, null);
+	}
+
 	public Bishop(Colors color, BoardLocation boardLocation) {
 		super(color, boardLocation);
 	}

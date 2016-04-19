@@ -2,6 +2,10 @@ import java.util.ArrayList;
 
 public class Rook extends ChessPiece {
 
+	public Rook(Colors color){
+		this(color, null);
+	}
+
 	public Rook(Colors color, BoardLocation boardLocation) {
 		super(color, boardLocation);
 	}

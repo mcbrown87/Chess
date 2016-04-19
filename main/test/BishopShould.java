@@ -33,4 +33,15 @@ public class BishopShould {
         assertFalse(sut.IsValidMove(new BoardLocation('d', 5)));
         assertFalse(sut.IsValidMove(new BoardLocation('a', 8)));
     }
+
+    @Test
+    public void NotAllowValidMovesBasedOnBoardState(){
+
+        Board board = new Board();
+        board.SetPiece(new Knight(ChessPiece.Colors.Black), new BoardLocation('d', 6));
+
+        Bishop sut = new Bishop(ChessPiece.Colors.Black, new BoardLocation('c', 5));
+
+        assertFalse(sut.IsValidMove(new BoardLocation('d', 6), board));
+    }
 }

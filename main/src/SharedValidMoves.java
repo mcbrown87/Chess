@@ -9,14 +9,14 @@ class SharedValidMoves {
         ArrayList<BoardLocation> validMoves = new ArrayList<>();
 
         // Diagonal Upper Right
-        for (int horizontalPosition = boardLocation.GetNumericHorizontalPosition() + 1; horizontalPosition <= BoardLocation.MaxHorizontalPosition; horizontalPosition++) {
+        for (int horizontalPosition = boardLocation.GetNumericHorizontalPosition() + 1; horizontalPosition <= Board.MaxHorizontalPosition; horizontalPosition++) {
 
             int diagonalConstant = horizontalPosition - boardLocation.GetNumericHorizontalPosition();
 
             int validHorizontalPosition = boardLocation.GetNumericHorizontalPosition() + diagonalConstant;
             int validVerticalPosition = boardLocation.GetVerticalPosition() + diagonalConstant;
 
-            if (validVerticalPosition > BoardLocation.MaxVerticalPosition) {
+            if (validVerticalPosition > Board.MaxVerticalPosition) {
                 break;
             }
 
@@ -24,14 +24,14 @@ class SharedValidMoves {
         }
 
         // Diagonal Bottom Right
-        for (int horizontalPosition = boardLocation.GetNumericHorizontalPosition() + 1; horizontalPosition <= BoardLocation.MaxHorizontalPosition; horizontalPosition++) {
+        for (int horizontalPosition = boardLocation.GetNumericHorizontalPosition() + 1; horizontalPosition <= Board.MaxHorizontalPosition; horizontalPosition++) {
 
             int diagonalConstant = horizontalPosition - boardLocation.GetNumericHorizontalPosition();
 
             int validHorizontalPosition = boardLocation.GetNumericHorizontalPosition() + diagonalConstant;
             int validVerticalPosition = boardLocation.GetVerticalPosition() - diagonalConstant;
 
-            if (validVerticalPosition < BoardLocation.MinVerticalPosition) {
+            if (validVerticalPosition < Board.MinVerticalPosition) {
                 break;
             }
 
@@ -39,14 +39,14 @@ class SharedValidMoves {
         }
 
         // Diagonal Bottom Left
-        for (int horizontalPosition = boardLocation.GetNumericHorizontalPosition() - 1; horizontalPosition >= BoardLocation.MinHorizontalPosition; horizontalPosition--) {
+        for (int horizontalPosition = boardLocation.GetNumericHorizontalPosition() - 1; horizontalPosition >= Board.MinHorizontalPosition; horizontalPosition--) {
 
             int diagonalConstant = horizontalPosition - boardLocation.GetNumericHorizontalPosition();
 
             int validHorizontalPosition = boardLocation.GetNumericHorizontalPosition() + diagonalConstant;
             int validVerticalPosition = boardLocation.GetVerticalPosition() + diagonalConstant;
 
-            if (validVerticalPosition < BoardLocation.MinVerticalPosition) {
+            if (validVerticalPosition < Board.MinVerticalPosition) {
                 break;
             }
 
@@ -54,14 +54,14 @@ class SharedValidMoves {
         }
 
         // Diagonal Top Left
-        for (int horizontalPosition = boardLocation.GetNumericHorizontalPosition() - 1; horizontalPosition >= BoardLocation.MinHorizontalPosition; horizontalPosition--) {
+        for (int horizontalPosition = boardLocation.GetNumericHorizontalPosition() - 1; horizontalPosition >= Board.MinHorizontalPosition; horizontalPosition--) {
 
             int diagonalConstant = horizontalPosition - boardLocation.GetNumericHorizontalPosition();
 
             int validHorizontalPosition = boardLocation.GetNumericHorizontalPosition() + diagonalConstant;
             int validVerticalPosition = boardLocation.GetVerticalPosition() - diagonalConstant;
 
-            if (validVerticalPosition > BoardLocation.MaxVerticalPosition) {
+            if (validVerticalPosition > Board.MaxVerticalPosition) {
                 break;
             }
 
@@ -76,23 +76,23 @@ class SharedValidMoves {
         ArrayList<BoardLocation> validMoves = new ArrayList<>();
 
         // Horizontal
-        for (int horizontalPosition = boardLocation.GetNumericHorizontalPosition() + 1; horizontalPosition <= BoardLocation.MaxHorizontalPosition; horizontalPosition++) {
+        for (int horizontalPosition = boardLocation.GetNumericHorizontalPosition() + 1; horizontalPosition <= Board.MaxHorizontalPosition; horizontalPosition++) {
 
             validMoves.add(new BoardLocation(horizontalPosition, boardLocation.GetVerticalPosition()));
         }
 
-        for (int horizontalPosition = boardLocation.GetNumericHorizontalPosition() - 1; horizontalPosition >= BoardLocation.MinHorizontalPosition; horizontalPosition--) {
+        for (int horizontalPosition = boardLocation.GetNumericHorizontalPosition() - 1; horizontalPosition >= Board.MinHorizontalPosition; horizontalPosition--) {
 
             validMoves.add(new BoardLocation(horizontalPosition, boardLocation.GetVerticalPosition()));
         }
 
         // Vertical
-        for (int verticalPosition = boardLocation.GetVerticalPosition() + 1; verticalPosition <= BoardLocation.MaxVerticalPosition; verticalPosition++) {
+        for (int verticalPosition = boardLocation.GetVerticalPosition() + 1; verticalPosition <= Board.MaxVerticalPosition; verticalPosition++) {
 
             validMoves.add(new BoardLocation(boardLocation.GetNumericHorizontalPosition(), verticalPosition));
         }
 
-        for (int verticalPosition = boardLocation.GetVerticalPosition() - 1; verticalPosition >= BoardLocation.MinHorizontalPosition; verticalPosition--) {
+        for (int verticalPosition = boardLocation.GetVerticalPosition() - 1; verticalPosition >= Board.MinHorizontalPosition; verticalPosition--) {
 
             validMoves.add(new BoardLocation(boardLocation.GetNumericHorizontalPosition(), verticalPosition));
         }

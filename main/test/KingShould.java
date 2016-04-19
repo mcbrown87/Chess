@@ -1,6 +1,7 @@
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by mbrown on 4/8/16.
@@ -37,5 +38,16 @@ public class KingShould {
         assertFalse(kingOnBottomOfBoard.IsValidMove(new BoardLocation('f', 8)));
         assertFalse(kingOnLeftOfBoard.IsValidMove(new BoardLocation('h', 5)));
         assertFalse(kingOnRightOfBoard.IsValidMove(new BoardLocation('a', 1)));
+    }
+
+    @Test
+    public void NotAllowValidMovesBasedOnBoardState(){
+
+        Board board = new Board();
+        board.SetPiece(new Knight(ChessPiece.Colors.Black), new BoardLocation('c', 6));
+
+        King sut = new King(ChessPiece.Colors.Black, new BoardLocation('c', 5));
+
+        assertFalse(sut.IsValidMove(new BoardLocation('c', 6), board));
     }
 }

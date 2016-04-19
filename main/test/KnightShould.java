@@ -37,4 +37,15 @@ public class KnightShould {
         assertFalse(sut.IsValidMove(new BoardLocation('d', 5)));
         assertFalse(sut.IsValidMove(new BoardLocation('a', 8)));
     }
+
+    @Test
+    public void NotAllowValidMovesBasedOnBoardState(){
+
+        Board board = new Board();
+        board.SetPiece(new Knight(ChessPiece.Colors.Black), new BoardLocation('g', 6));
+
+        Knight sut = new Knight(ChessPiece.Colors.Black, new BoardLocation('e', 5));
+
+        assertFalse(sut.IsValidMove(new BoardLocation('g', 6), board));
+    }
 }

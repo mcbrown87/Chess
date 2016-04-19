@@ -2,6 +2,10 @@ import java.util.ArrayList;
 
 public class Knight extends ChessPiece {
 
+	public Knight(Colors color){
+		this(color, null);
+	}
+
 	public Knight(Colors color, BoardLocation boardLocation) {
 		super(color, boardLocation);
 	}
