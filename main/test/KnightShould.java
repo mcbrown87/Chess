@@ -1,7 +1,7 @@
 import org.junit.Test;
+import sun.plugin.dom.exception.InvalidStateException;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Created by mbrown on 4/9/16.
@@ -38,8 +38,15 @@ public class KnightShould {
         assertFalse(sut.IsValidMove(new BoardLocation('a', 8)));
     }
 
+    @Test(expected = InvalidStateException.class)
+    public void ThrowForAnInvalidMove(){
+        Knight sut = new Knight(ChessPiece.Colors.Black, new BoardLocation('g', 6));
+
+        sut.Move(new BoardLocation('h', 7), new Board());
+    }
+
     @Test
-    public void NotAllowValidMovesBasedOnBoardState(){
+    public void NotAllowInvalidMovesBasedOnBoardState(){
 
         Board board = new Board();
         board.SetPiece(new Knight(ChessPiece.Colors.Black), new BoardLocation('g', 6));
@@ -48,4 +55,21 @@ public class KnightShould {
 
         assertFalse(sut.IsValidMove(new BoardLocation('g', 6), board));
     }
+
+    @Test
+    public void NotAllowInvalidMovesBasedOnBoundaries(){
+
+        Knight sut = new Knight(ChessPiece.Colors.Black, new BoardLocation('a', 8));
+        assertEquals(2, sut.GetValidMoves().size());
+
+        sut = new Knight(ChessPiece.Colors.Black, new BoardLocation('h', 8));
+        assertEquals(2, sut.GetValidMoves().size());
+
+        sut = new Knight(ChessPiece.Colors.Black, new BoardLocation('a', 1));
+        assertEquals(2, sut.GetValidMoves().size());
+
+        sut = new Knight(ChessPiece.Colors.Black, new BoardLocation('h', 8));
+        assertEquals(2, sut.GetValidMoves().size());
+    }
+
 }

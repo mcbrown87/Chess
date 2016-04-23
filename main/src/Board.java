@@ -33,7 +33,12 @@ public class Board {
         }
     }
 
-    public void SetPiece(ChessPiece chessPiece, BoardLocation boardLocation){
+    public void SetPiece(ChessPiece chessPiece, BoardLocation boardLocation) {
+
+        if (chessPiece != null) {
+            chessPiece.SetBoardLocation(boardLocation);
+        }
+
         boardLocations.put(boardLocation, chessPiece);
     }
 }

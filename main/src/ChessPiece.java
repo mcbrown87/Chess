@@ -1,3 +1,5 @@
+import sun.plugin.dom.exception.InvalidStateException;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -13,11 +15,23 @@ public abstract class ChessPiece {
 
 	public ChessPiece(Colors color, BoardLocation boardLocation) {
 		this.color = color;
-		SetBoardLocation(boardLocation);
+		this.boardLocation = boardLocation;
 	}
 
-	public void SetBoardLocation(BoardLocation boardLocation){
+	void SetBoardLocation(BoardLocation boardLocation){
 		this.boardLocation = boardLocation;
+	}
+
+	public void Move(BoardLocation boardLocation, Board board){
+		if(!IsValidMove(boardLocation, board)){
+			throw new InvalidStateException(String.format("A move to '%s' is invalid for %s", boardLocation, this));
+		}
+
+		this.boardLocation = boardLocation;
+	}
+
+	public BoardLocation GetBoardLocation(){
+		return boardLocation;
 	}
 
 	public boolean IsValidMove(BoardLocation boardLocation){
@@ -36,6 +50,7 @@ public abstract class ChessPiece {
 
 		Iterator<BoardLocation> iterator = GetValidMoves().iterator();
 
+		// Remove all invalid moves based on board location
 		while(iterator.hasNext()) {
 			BoardLocation validMove = iterator.next();
 

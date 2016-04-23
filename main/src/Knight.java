@@ -17,14 +17,45 @@ public class Knight extends ChessPiece {
 		int horizontalPosition = boardLocation.GetNumericHorizontalPosition();
 		int verticalPosition = boardLocation.GetVerticalPosition();
 
-		validMoves.add(new BoardLocation(horizontalPosition + 1, verticalPosition + 2));
-		validMoves.add(new BoardLocation(horizontalPosition - 1, verticalPosition + 2));
-		validMoves.add(new BoardLocation(horizontalPosition + 1, verticalPosition - 2));
-		validMoves.add(new BoardLocation(horizontalPosition - 1, verticalPosition - 2));
-		validMoves.add(new BoardLocation(horizontalPosition + 2, verticalPosition + 1));
-		validMoves.add(new BoardLocation(horizontalPosition + 2, verticalPosition - 1));
-		validMoves.add(new BoardLocation(horizontalPosition - 2, verticalPosition + 1));
-		validMoves.add(new BoardLocation(horizontalPosition - 2, verticalPosition - 1));
+		if (boardLocation.GetNumericHorizontalPosition() < Board.MaxHorizontalPosition &&
+				boardLocation.GetVerticalPosition() < Board.MaxVerticalPosition - 1) {
+			validMoves.add(new BoardLocation(horizontalPosition + 1, verticalPosition + 2));
+		}
+
+		if (boardLocation.GetNumericHorizontalPosition() > Board.MinHorizontalPosition &&
+				boardLocation.GetVerticalPosition() < Board.MaxVerticalPosition - 1) {
+			validMoves.add(new BoardLocation(horizontalPosition - 1, verticalPosition + 2));
+		}
+
+		if (boardLocation.GetNumericHorizontalPosition() < Board.MaxHorizontalPosition &&
+				boardLocation.GetVerticalPosition() > Board.MinVerticalPosition + 1) {
+			validMoves.add(new BoardLocation(horizontalPosition + 1, verticalPosition - 2));
+		}
+
+		if (boardLocation.GetNumericHorizontalPosition() > Board.MinHorizontalPosition &&
+				boardLocation.GetVerticalPosition() > Board.MinVerticalPosition - 1) {
+			validMoves.add(new BoardLocation(horizontalPosition - 1, verticalPosition - 2));
+		}
+
+		if (boardLocation.GetNumericHorizontalPosition() < Board.MaxHorizontalPosition - 1 &&
+				boardLocation.GetVerticalPosition() < Board.MaxVerticalPosition) {
+			validMoves.add(new BoardLocation(horizontalPosition + 2, verticalPosition + 1));
+		}
+
+		if (boardLocation.GetNumericHorizontalPosition() < Board.MaxHorizontalPosition - 1 &&
+				boardLocation.GetVerticalPosition() > Board.MinVerticalPosition) {
+			validMoves.add(new BoardLocation(horizontalPosition + 2, verticalPosition - 1));
+		}
+
+		if (boardLocation.GetNumericHorizontalPosition() > Board.MinHorizontalPosition + 1 &&
+				boardLocation.GetVerticalPosition() < Board.MaxVerticalPosition) {
+			validMoves.add(new BoardLocation(horizontalPosition - 2, verticalPosition + 1));
+		}
+
+		if (boardLocation.GetNumericHorizontalPosition() > Board.MinHorizontalPosition + 1 &&
+				boardLocation.GetVerticalPosition() > Board.MinVerticalPosition) {
+			validMoves.add(new BoardLocation(horizontalPosition - 2, verticalPosition - 1));
+		}
 
 		return validMoves;
 	}
