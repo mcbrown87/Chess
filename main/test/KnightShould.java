@@ -1,12 +1,19 @@
 import org.junit.Test;
 import sun.plugin.dom.exception.InvalidStateException;
 
+import static junit.framework.TestCase.assertNull;
 import static org.junit.Assert.*;
 
 /**
  * Created by mbrown on 4/9/16.
  */
 public class KnightShould {
+
+    @Test
+    public void BeAbleToBeInstantiatedWithoutABoardLocation(){
+        Knight sut = new Knight(ChessPiece.Colors.White);
+        assertNull(sut.GetBoardLocation());
+    }
 
     @Test
     public void AllowValidMoves(){
@@ -27,7 +34,7 @@ public class KnightShould {
     }
 
     @Test
-    public void NotAllowValidMoves(){
+    public void NotAllowInvalidMoves(){
 
         Knight sut = new Knight(ChessPiece.Colors.Black, new BoardLocation('e', 5));
 

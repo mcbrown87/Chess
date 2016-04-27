@@ -1,6 +1,7 @@
 import org.junit.Test;
 import sun.plugin.dom.exception.InvalidStateException;
 
+import static junit.framework.TestCase.assertNull;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -8,6 +9,12 @@ import static org.junit.Assert.assertTrue;
  * Created by mbrown on 4/9/16.
  */
 public class BishopShould {
+
+    @Test
+    public void BeAbleToBeInstantiatedWithoutABoardLocation(){
+        Bishop sut = new Bishop(ChessPiece.Colors.White);
+        assertNull(sut.GetBoardLocation());
+    }
 
     @Test
     public void AllowValidMoves(){
@@ -24,7 +31,7 @@ public class BishopShould {
     }
 
     @Test
-    public void NotAllowValidMoves(){
+    public void NotAllowInvalidMoves(){
 
         Bishop sut = new Bishop(ChessPiece.Colors.Black, new BoardLocation('e', 5));
 

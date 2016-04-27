@@ -9,7 +9,7 @@ public abstract class ChessPiece {
 		White
 	}
 
-	private Colors color;
+	protected Colors color;
 
 	protected BoardLocation boardLocation;
 
@@ -27,7 +27,7 @@ public abstract class ChessPiece {
 			throw new InvalidStateException(String.format("A move to '%s' is invalid for %s", boardLocation, this));
 		}
 
-		this.boardLocation = boardLocation;
+		board.SetPiece(this, boardLocation);
 	}
 
 	public BoardLocation GetBoardLocation(){
@@ -38,8 +38,8 @@ public abstract class ChessPiece {
 		return IsValidMove(boardLocation, new Board());
 	}
 
-	public boolean IsValidMove(BoardLocation proposedBoardLocation, Board board){
-		return GetValidMoves(board).contains(proposedBoardLocation);
+	public boolean IsValidMove(BoardLocation boardLocation, Board board){
+		return GetValidMoves(board).contains(boardLocation);
 	}
 
 	protected abstract ArrayList<BoardLocation> GetValidMoves();

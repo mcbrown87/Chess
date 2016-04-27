@@ -1,6 +1,7 @@
 import org.junit.Test;
 import sun.plugin.dom.exception.InvalidStateException;
 
+import static junit.framework.TestCase.assertNull;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -8,6 +9,12 @@ import static org.junit.Assert.assertTrue;
  * Created by mbrown on 4/8/16.
  */
 public class KingShould {
+
+    @Test
+    public void BeAbleToBeInstantiatedWithoutABoardLocation(){
+        King sut = new King(ChessPiece.Colors.White);
+        assertNull(sut.GetBoardLocation());
+    }
 
     @Test
     public void DetectValidMoves() {
@@ -26,7 +33,7 @@ public class KingShould {
     }
 
     @Test
-    public void DetectInvalidMoves() {
+    public void NotAllowInvalidMoves() {
 
         King kingOnTopOfBoard = new King(ChessPiece.Colors.Black, new BoardLocation('d', 8));
         King kingOnBottomOfBoard = new King(ChessPiece.Colors.Black, new BoardLocation('d', 1));
