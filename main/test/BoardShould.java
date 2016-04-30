@@ -1,5 +1,7 @@
 import org.junit.Test;
 
+import static junit.framework.TestCase.assertNotNull;
+import static junit.framework.TestCase.assertNull;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -27,5 +29,19 @@ public class BoardShould {
         sut.SetPiece(myRook, newBoardLocation);
 
         assertEquals(newBoardLocation, myRook.GetBoardLocation());
+    }
+
+    @Test
+    public void BeAbleToReset(){
+
+        Board sut = new Board();
+        BoardLocation boardLocation = new BoardLocation('d', 5);
+
+        assertNull(sut.GetBoardLocations().get(boardLocation));
+        sut.SetPiece(new Rook(ChessPiece.Colors.Black), boardLocation);
+        assertNotNull(sut.GetBoardLocations().get(boardLocation));
+
+        sut.Reset();
+        assertNull(sut.GetBoardLocations().get(boardLocation));
     }
 }

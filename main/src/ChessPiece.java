@@ -30,6 +30,10 @@ public abstract class ChessPiece {
 		board.SetPiece(this, boardLocation);
 	}
 
+	public Colors GetColor(){
+		return color;
+	}
+
 	public BoardLocation GetBoardLocation(){
 		return boardLocation;
 	}
@@ -42,9 +46,9 @@ public abstract class ChessPiece {
 		return GetValidMoves(board).contains(boardLocation);
 	}
 
-	protected abstract ArrayList<BoardLocation> GetValidMoves();
+	public abstract ArrayList<BoardLocation> GetValidMoves();
 
-	protected ArrayList<BoardLocation> GetValidMoves(Board board) {
+	public ArrayList<BoardLocation> GetValidMoves(Board board) {
 
 		ArrayList<BoardLocation> validMoves = new ArrayList<>();
 
