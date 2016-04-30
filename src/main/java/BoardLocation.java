@@ -1,5 +1,3 @@
-import sun.plugin.dom.exception.InvalidStateException;
-
 import java.util.regex.Pattern;
 
 
@@ -76,7 +74,7 @@ public class BoardLocation {
                 return GetNumericHorizontalPosition() == Board.MinHorizontalPosition;
 
             default:
-                throw new InvalidStateException(String.format("No detection logic defined for boundary '%s'", boundary.toString()));
+                throw new IllegalStateException(String.format("No detection logic defined for boundary '%s'", boundary.toString()));
         }
     }
 

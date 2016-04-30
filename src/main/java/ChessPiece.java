@@ -1,5 +1,3 @@
-import sun.plugin.dom.exception.InvalidStateException;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -24,7 +22,7 @@ public abstract class ChessPiece {
 
 	public void Move(BoardLocation boardLocation, Board board){
 		if(!IsValidMove(boardLocation, board)){
-			throw new InvalidStateException(String.format("A move to '%s' is invalid for %s", boardLocation, this));
+			throw new IllegalStateException(String.format("A move to '%s' is invalid for %s", boardLocation, this));
 		}
 
 		board.SetPiece(this, boardLocation);

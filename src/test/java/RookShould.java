@@ -1,5 +1,4 @@
 import org.junit.Test;
-import sun.plugin.dom.exception.InvalidStateException;
 
 import static junit.framework.TestCase.assertNull;
 import static org.junit.Assert.assertFalse;
@@ -42,7 +41,7 @@ public class RookShould {
         assertFalse(sut.IsValidMove(new BoardLocation('a', 8)));
     }
 
-    @Test(expected=InvalidStateException.class)
+    @Test(expected=IllegalStateException.class)
     public void ThrowForAnInvalidMove() {
 
         Rook sut = new Rook(ChessPiece.Colors.Black, new BoardLocation('c', 5));

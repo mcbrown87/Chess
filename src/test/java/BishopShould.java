@@ -1,5 +1,4 @@
 import org.junit.Test;
-import sun.plugin.dom.exception.InvalidStateException;
 
 import static junit.framework.TestCase.assertNull;
 import static org.junit.Assert.assertFalse;
@@ -53,7 +52,7 @@ public class BishopShould {
         assertFalse(sut.IsValidMove(new BoardLocation('d', 6), board));
     }
 
-    @Test(expected = InvalidStateException.class)
+    @Test(expected = IllegalStateException.class)
     public void ThrowForAnInvalidMove(){
         Bishop sut = new Bishop(ChessPiece.Colors.Black, new BoardLocation('g', 6));
 
