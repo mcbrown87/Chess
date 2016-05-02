@@ -46,23 +46,4 @@ public class KingShould {
         assertFalse(kingOnLeftOfBoard.IsValidMove(new BoardLocation('h', 5)));
         assertFalse(kingOnRightOfBoard.IsValidMove(new BoardLocation('a', 1)));
     }
-
-    @Test
-    public void NotAllowInvalidMovesBasedOnBoardState(){
-
-        Board board = new Board();
-        board.SetPiece(new Knight(ChessPiece.Colors.Black), new BoardLocation('c', 6));
-
-        King sut = new King(ChessPiece.Colors.Black, new BoardLocation('c', 5));
-
-        assertFalse(sut.IsValidMove(new BoardLocation('c', 6), board));
-    }
-
-    @Test(expected = IllegalStateException.class)
-    public void ThrowForAnInvalidMove(){
-
-        King sut = new King(ChessPiece.Colors.Black, new BoardLocation('g', 6));
-
-        sut.Move(new BoardLocation('h', 8), new Board());
-    }
 }

@@ -44,24 +44,6 @@ public class KnightShould {
         assertFalse(sut.IsValidMove(new BoardLocation('a', 8)));
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void ThrowForAnInvalidMove(){
-        Knight sut = new Knight(ChessPiece.Colors.Black, new BoardLocation('g', 6));
-
-        sut.Move(new BoardLocation('h', 7), new Board());
-    }
-
-    @Test
-    public void NotAllowInvalidMovesBasedOnBoardState(){
-
-        Board board = new Board();
-        board.SetPiece(new Knight(ChessPiece.Colors.Black), new BoardLocation('g', 6));
-
-        Knight sut = new Knight(ChessPiece.Colors.Black, new BoardLocation('e', 5));
-
-        assertFalse(sut.IsValidMove(new BoardLocation('g', 6), board));
-    }
-
     @Test
     public void NotAllowInvalidMovesBasedOnBoundaries(){
 

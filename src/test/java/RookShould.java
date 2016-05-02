@@ -40,23 +40,4 @@ public class RookShould {
         assertFalse(sut.IsValidMove(new BoardLocation('d', 3)));
         assertFalse(sut.IsValidMove(new BoardLocation('a', 8)));
     }
-
-    @Test(expected=IllegalStateException.class)
-    public void ThrowForAnInvalidMove() {
-
-        Rook sut = new Rook(ChessPiece.Colors.Black, new BoardLocation('c', 5));
-
-        sut.Move(new BoardLocation('c', 5), new Board());
-    }
-
-    @Test
-    public void NotAllowInvalidMovesBasedOnBoardState(){
-
-        Board board = new Board();
-        board.SetPiece(new Knight(ChessPiece.Colors.Black), new BoardLocation('c', 6));
-
-        Rook sut = new Rook(ChessPiece.Colors.Black, new BoardLocation('c', 5));
-
-        assertFalse(sut.IsValidMove(new BoardLocation('c', 6), board));
-    }
 }

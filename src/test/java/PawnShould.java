@@ -1,5 +1,6 @@
 import org.junit.Test;
 
+import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNull;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -85,10 +86,27 @@ public class PawnShould {
         assertTrue(sut.IsValidMove(new BoardLocation('d', 6), board));
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void ThrowForAnInvalidMove(){
-        Pawn sut = new Pawn(ChessPiece.Colors.Black, new BoardLocation('g', 6));
+    @Test
+    public void NotAllowExtendedMovedIfAPieceIsBlockingIt(){
 
-        sut.Move(new BoardLocation('h', 1), new Board());
+        Board board = new Board();
+        board.SetPiece(new Knight(ChessPiece.Colors.Black), new BoardLocation('e', 3));
+
+        Pawn sut = new Pawn(ChessPiece.Colors.White);
+        board.SetPiece(sut, new BoardLocation('e', 2));
+
+        assertEquals(0, sut.GetValidMoves(board).size());
+    }
+
+    @Test
+    public void NotAllowExtendedMovedIfOccupied(){
+
+        Board board = new Board();
+        board.SetPiece(new Knight(ChessPiece.Colors.Black), new BoardLocation('e', 4));
+
+        Pawn sut = new Pawn(ChessPiece.Colors.White);
+        board.SetPiece(sut, new BoardLocation('e', 2));
+
+        assertEquals(1, sut.GetValidMoves(board).size());
     }
 }

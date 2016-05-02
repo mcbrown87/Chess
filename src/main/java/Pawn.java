@@ -39,9 +39,23 @@ public class Pawn extends ChessPiece {
 	}
 
 	@Override
-	public ArrayList<BoardLocation> GetValidMoves(Board board){
+	public ArrayList<BoardLocation> GetValidMoves(Board board) {
 
-		ArrayList<BoardLocation> validMoves = super.GetValidMoves(board);
+		ArrayList<BoardLocation> validMoves = GetValidMoves();
+
+		// Check to see if the forward space is occupied
+		BoardLocation forwardSpace = new BoardLocation(boardLocation.GetHorizontalPosition(), boardLocation
+				.GetVerticalPosition() + GetDirectionMultiplier());
+
+		BoardLocation forwardSpaceTwo = new BoardLocation(boardLocation.GetHorizontalPosition(), boardLocation
+				.GetVerticalPosition() + GetDirectionMultiplier() * 2);
+
+		if (board.GetBoardLocations().get(forwardSpace) != null) {
+			validMoves.remove(forwardSpace);
+			validMoves.remove(forwardSpaceTwo);
+		} else if (board.GetBoardLocations().get(forwardSpaceTwo) != null && validMoves.contains(forwardSpaceTwo)) {
+			validMoves.remove(forwardSpaceTwo);
+		}
 
 		ArrayList<BoardLocation> attackMoves = new ArrayList<>();
 
@@ -54,12 +68,12 @@ public class Pawn extends ChessPiece {
 		Iterator<BoardLocation> iterator = attackMoves.iterator();
 
 		// Check for valid attack moves
-		while(iterator.hasNext()) {
+		while (iterator.hasNext()) {
 			BoardLocation attackMove = iterator.next();
 
 			ChessPiece pieceAtProposedMove = board.GetBoardLocations().get(attackMove);
 
-			if(pieceAtProposedMove != null && pieceAtProposedMove.color != color){
+			if (pieceAtProposedMove != null && pieceAtProposedMove.color != color) {
 				validMoves.add(attackMove);
 			}
 		}

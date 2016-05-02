@@ -1,3 +1,4 @@
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,11 +18,42 @@ public class Board {
 
     public static final int MaxHorizontalPosition = 8;
 
-    public Board(){
+    public Board() {
         Initialize();
     }
 
-    public Map<BoardLocation, ChessPiece> GetBoardLocations(){
+    public Board(Board board) throws InstantiationException {
+
+        for (Map.Entry<BoardLocation, ChessPiece> entry : board.GetBoardLocations().entrySet()) {
+
+            ChessPiece chessPiece;
+
+            if (entry.getValue() == null) {
+                chessPiece = null;
+            } else {
+                try {
+                    chessPiece = entry.getValue().getClass().getConstructor(ChessPiece.Colors.class).newInstance
+                            (entry.getValue().color);
+                } catch (InstantiationException e) {
+                    e.printStackTrace();
+                    throw new InstantiationException();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                    throw new InstantiationException();
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
+                    throw new InstantiationException();
+                } catch (NoSuchMethodException e) {
+                    e.printStackTrace();
+                    throw new InstantiationException();
+                }
+            }
+
+            SetPiece(chessPiece, entry.getKey());
+        }
+    }
+
+    public Map<BoardLocation, ChessPiece> GetBoardLocations() {
         return Collections.unmodifiableMap(boardLocations);
     }
 
@@ -41,7 +73,7 @@ public class Board {
             SetPiece(new Pawn(ChessPiece.Colors.Black), new BoardLocation(i, 7));
             SetPiece(new Pawn(ChessPiece.Colors.White), new BoardLocation(i, 2));
 
-            switch(i){
+            switch (i) {
                 case 1:
                 case 8:
                     SetPiece(new Rook(ChessPiece.Colors.Black), new BoardLocation(i, 8));
@@ -80,5 +112,45 @@ public class Board {
         }
 
         boardLocations.put(boardLocation, chessPiece);
+    }
+
+    public void RemovePiece(BoardLocation boardLocation){
+        boardLocations.put(boardLocation, null);
+    }
+
+    public boolean IsCheck(ChessPiece.Colors color) {
+
+        King king = GetKing(color);
+
+        if(king == null){
+            return false;
+        }
+
+        for (Map.Entry<BoardLocation, ChessPiece> entry : GetBoardLocations().entrySet()) {
+
+            ChessPiece chessPiece = entry.getValue();
+
+            if (chessPiece == null) {
+                continue;
+            }
+
+            if(chessPiece.color != color && chessPiece.GetValidMoves().contains(king.GetBoardLocation())) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private King GetKing(ChessPiece.Colors color) {
+
+        for (Map.Entry<BoardLocation, ChessPiece> entry : GetBoardLocations().entrySet()) {
+
+            if (entry.getValue() instanceof King) {
+                return (King) entry.getValue();
+            }
+        }
+
+        return null;
     }
 }
